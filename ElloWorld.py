@@ -10,7 +10,8 @@ import json
 import requests
 from bs4 import BeautifulSoup
 
-USING_FIDDLER = True
+USING_FIDDLER = False
+#Change to True if using Fiddler
 
 user_name = '' #replace with your login
 password = '' #replace with your password
