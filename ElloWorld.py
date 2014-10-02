@@ -86,8 +86,21 @@ class ElloInterface:
         
         return(responseDictionary)
         
+    def tweet_user(self, textToSend):
+        friendsTarget = 'https://ello.co/api/v1/posts.json'
+        unsanitized_body_Text = [ { "kind":"text","data": textToSend } ]
+        # UTF8 checkmark character for Ruby hackery
+        rubyHackCheck = b'\xE2\x9C\x93'.decode('utf-8')
+
+        tweetData = {
+            'utf8':rubyHackCheck,
+            'unsanitized_body':json.dumps(unsanitized_body_Text)
+        }
+        _hdr = {'content-type': 'application/json', 'accept': 'application/json'}
         
-     
+        postReponse = self._session.post(friendsTarget, data=tweetData, headers=_hdr)
+        return(postReponse)
+
         
 print('Ello World')
 
